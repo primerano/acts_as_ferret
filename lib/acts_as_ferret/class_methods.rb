@@ -146,9 +146,11 @@ module ActsAsFerret
     # +page+ and +per_page+ are supposed to work regardless of any 
     # +conditions+ present in +find_options+.
     def find_with_ferret(q, options = {}, find_options = {})
-      if respond_to?(:scope) && scope(:find, :conditions)
-        find_options[:conditions] ||= '1=1' # treat external scope the same as if :conditions present (i.e. when it comes to counting results)
-      end
+      
+      # commented out for rails 3 but this may be important
+      #  if respond_to?(:scope) && scope(:find, :conditions)
+      #   find_options[:conditions] ||= '1=1' # treat external scope the same as if :conditions present (i.e. when it comes to counting results)
+      # end
       return ActsAsFerret::find q, self, options, find_options
     end 
 
